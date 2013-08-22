@@ -3,29 +3,16 @@ USE_CAMERA_STUB := true
 # inherit from the proprietary version
 -include vendor/samsung/infinite/BoardConfigVendor.mk
 
-TARGET_ARCH := arm
-TARGET_NO_BOOTLOADER := true
-TARGET_CPU_VARIANT := generic
-TARGET_BOARD_PLATFORM := unknown
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH_VARIANT := armv7-a-neon
-ARCH_ARM_HAVE_TLS_REGISTER := true
+# inherit from common d2
+-include device/samsung/d2-common/BoardConfigCommon.mk
 
-TARGET_BOOTLOADER_BOARD_NAME := infinite
-
+# Kernel
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=31
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01300000
 
-# fix this up by examining /proc/mtd on a running device
-BOARD_BOOTIMAGE_PARTITION_SIZE := 0x105c0000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x105c0000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x105c0000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
-BOARD_FLASH_BLOCK_SIZE := 131072
-
 TARGET_PREBUILT_KERNEL := device/samsung/infinite/kernel
 
-BOARD_HAS_NO_SELECT_BUTTON := true
+# Asserts
+TARGET_OTA_ASSERT_DEVICE := infinite,SCH-R830
